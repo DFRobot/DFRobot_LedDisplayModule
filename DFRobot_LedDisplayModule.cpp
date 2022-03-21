@@ -1,13 +1,12 @@
 /*!
  * @file DFRobot_LedDisplayModule.h
  * @brief Define the basic structure of class DFRobot_LedDisplayModule
- *
  * @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
- * @licence     The MIT License (MIT)
+ * @license     The MIT License (MIT)
  * @author [Actor](liang.li@dfrobot.com)
- * @version  V1.0
+ * @version  V1.0.1
  * @date  2019-12-10
- * @https://github.com/DFRobot/DFRobot_LedDisplayModule
+ * @url https://github.com/DFRobot/DFRobot_LedDisplayModule
  */
 
 #include <Arduino.h>

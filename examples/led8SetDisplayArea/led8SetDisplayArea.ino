@@ -2,26 +2,25 @@
  * @file led8SetDisplayArea.ino
  * @brief The experiment to set the display area of the digital tube.
  * @n Experiment phenomenon: The 1234 zone of the digital tube shows "HALO", and the 5678 zone shows "LED8" in one second, then 12345678 zone shows "HALO.LED8" in one second.
- *
  * @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
- * @licence     The MIT License (MIT)
- * @author [Actor](wenzheng.wang@dfrobot.com)
- * @version  V1.0
- * @eGPAte  2019-12-10
- * @get from https://www.dfrobot.com
+ * @license     The MIT License (MIT)
+ * @author [Actor](wenzheng.wang@dfrobot.com),[TangJie](jie.tang@dfrobot.com)
+ * @version  V1.0.1
+ * @data  2022-03-21
  * @url https://github.com/DFRobot/DFRobot_LedDisplayModule
  */
 # include "DFRobot_LedDisplayModule.h"
-/*DFRobot_LedDisplayModule Constructor
- *Parameter &wire  Wire
- *The IIC address of 8 bits digital tube in default is 0xE0
- *The IIC address of 8 bits digital tube can be changed by combining A1 and A0
+/**
+ * DFRobot_LedDisplayModule Constructor
+ * Parameter &wire  Wire
+ * The IIC address of 8 bits digital tube in default is 0xE0
+ * The IIC address of 8 bits digital tube can be changed by combining A1 and A0
  * 1  1  1  0  | 0  A1 A0 0
-   1  1  1  0  | 0  0  0  0    0xE0
-   1  1  1  0  | 0  0  1  0    0xE2
-   1  1  1  0  | 0  1  0  0    0xE4
-   0  0  1  0  | 0  1  1  0    0xE6
-*/ 
+ * 1  1  1  0  | 0  0  0  0    0xE0
+ * 1  1  1  0  | 0  0  1  0    0xE2
+ * 1  1  1  0  | 0  1  0  0    0xE4
+ * 0  0  1  0  | 0  1  1  0    0xE6
+ */ 
 DFRobot_LedDisplayModule LED(Wire, 0xE0);
 
 void setup() 
@@ -37,12 +36,14 @@ void setup()
 
 void loop() 
 {
-  /* Set the display area to 1, 2, 3, 4, 5, 6, 7, 8 
+  /**
+   * Set the display area to 1, 2, 3, 4, 5, 6, 7, 8 
    * It can show 8 bits, the region of each parameter is 1~8 
    * Please resend the display value if the display area is changed
    */
   LED.setDisplayArea8(1,2,3,4);
-  /* Display "HALO"
+  /**
+   * Display "HALO"
    * At present, it only supports showing the numbers 0 to 9, capital letters A, B, C, D, E, F, H, L, O, P, U and dash-,
    * and you can also bring decimal points, such as "0." "9." "A." "-."
    */

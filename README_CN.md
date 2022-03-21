@@ -1,30 +1,31 @@
 # DFRobot_LedDisplayModule
   * [中文版](./README_CN.md)
-This is a 4bits / 8bits digital tube. It communicates with the host via IIC to show numbers from 0 to 9, capital letters A, B, C, D, E, F, H, L, O, P, U and dash-. <br>
-The IIC address of 4 bits digital tube in default is 0x48. <br>
-The IIC address of 8 bits digital tube in default is 0xE0. This address can be changed to 0xE2, 0xE4, 0xE6 with different combinations of 2 welding points that in the back of the display. <br>
+这是一个4位/ 8位数码管。 它通过IIC与主机通信，显示0 ~ 9的数字，大写字母A、B、C、D、E、F、H、L、O、P、U和破折号。   <br>
+4位数码管的IIC地址默认为0x48。 <br>
+8位数码管的IIC地址默认为0xE0。 该地址可以用显示器背面的2个焊点的不同组合来更改为0xE2、0xE4、0xE6。 <br>
 
 ![Product Image](./resources/images/DFR0646.png)
 
-## Product Link (https://www.dfrobot.com/product-1978.html)
+## 产品链接 (https://www.dfrobot.com.cn/goods-2601.html)
+
     SKU: DFR0646
 
-  - [Summary](#summary)
-  - [Installation](#installation)
-  - [Methods](#methods)
-  - [Compatibility](#compatibility)
-  - [History](#history)
-  - [Credits](#credits)
+## 目录
+  - [概述](#概述)
+  - [库安装](#库安装)
+  - [方法](#方法)
+  - [兼容性](#兼容性)
+  - [版本](#版本)
+  - [创作者](#创作者)
 
-## Summary
-This is an Arduino IDE library to help realize the communication between the 4bits/8bits digital tube and Arduino<br>
-The library ease the control of display by IIC<br>
+## 概述
+这是一个Arduino IDE库，帮助实现4位/8位数码管与Arduino之间的通信  
+该库简化了IIC对显示的控制  <br>
 
-## Installation
+## 库安装
 
-To use this library, please download the library file first and paste it into the \Arduino\libraries directory, then open the examples folder and run the demo in the folder.
-
-## Methods
+使用此库前，请首先下载库文件，将其粘贴到\Arduino\libraries目录中，然后打开examples文件夹并在该文件夹中运行演示。
+## 方法
 
 ```C++
   /**
@@ -156,22 +157,22 @@ To use this library, please download the library file first and paste it into th
     void print8(const char buf1[] = "82",const char buf2[] = "82",const char buf3[] = "82",const char buf4[] = "82",const char buf5[] = "82",const char buf6[] = "82",const char buf7[] = "82",const char buf8[] = "82");
 ```
 
-## Compatibility
+## 兼容性
 
 MCU                | Work Well    | Work Wrong   | Untested    | Remarks
 ------------------ | :----------: | :----------: | :---------: | -----
 Arduino Uno        |      √       |              |             | 
-Mega2560           |      √       |              |             | 
-Leonardo           |      √       |              |             | 
-ESP32              |      √       |              |             | 
-micro:bit          |      √       |              |             | 
+Mega2560        |      √       |              |             | 
+Leonardo        |      √       |              |             | 
+ESP32         |      √       |              |             | 
+micro:bit        |      √       |              |             | 
 
-## History
+## 版本
 
-- 2019/12/10 Version V1.0.0 released.
-- 2022/03/21 Version V1.0.1 released.
+- 2019/12/10 - V1.0.0版本
+- 2022/03/21 - V1.0.1版本
 
-## Credits
+## 创作者
 
 Written by(wenzheng.wang@dfrobot.com), 2019. (Welcome to our [website](https://www.dfrobot.com/))
 
