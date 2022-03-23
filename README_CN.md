@@ -1,5 +1,7 @@
 # DFRobot_LedDisplayModule
-  * [中文版](./README_CN.md)
+
+* [中文版](./README_CN.md)
+  
 这是一个4位/ 8位数码管。 它通过IIC与主机通信，显示0 ~ 9的数字，大写字母A、B、C、D、E、F、H、L、O、P、U和破折号。   <br>
 4位数码管的IIC地址默认为0x48。 <br>
 8位数码管的IIC地址默认为0xE0。 该地址可以用显示器背面的2个焊点的不同组合来更改为0xE2、0xE4、0xE6。 <br>
@@ -29,132 +31,94 @@
 
 ```C++
   /**
-   * @fn begin4
-   * @brief  the 4 bits digital tube
-   * @return Return 0 if the initialization is successful, otherwise return non-zero
+   * @fn begin
+   * @brief  初始化数码管显示
+   * @param bit 设置显示位数
+   * @return 如果显示0则初始化成功，否则返回非0
    */
-  int begin4();
+  int begin(eSetBit_t bit);
   
   /**
-   * @fn begin8
-   * @brief Initialize the 8 bits digital tube
-   * @return Return 0 if the initialization is successful, otherwise return non-zero
-   */ 
-  int begin8();
-
-  /**
    * @fn displayOn
-   * @brief Turn ON the display
-   * @param IIC command to turn ON the display
+   * @brief 打开显示
+   * @n I2C命令打开显示
    * @return None
    */
   void displayOn();
   
   /**
    * @fn displayOff
-   * @brief Turn OFF the display 
-   * @param IIC command to turn OFF the display
+   * @brief 关闭显示 
+   * @n I2C命令关闭显示
    * @return None
    */  
   void displayOff();
 
   /**
    * @fn flashTwos
-   * @brief Flash mode of the 8 bits digital tube, flash at 0.5Hz
-   * @param IIC flash command
+   * @brief 8位数码管的闪光模式，闪光0.5Hz  
+   * @n IIC flash 命令
    * @return None
    */
   void flashTwos();
   
   /**
    * @fn flashOnes
-   * @brief Flash mode of the 8 bits digital tube, flash at 1Hz
-   * @param IIC flash command
+   * @brief 8位数码管的闪光模式，闪光1Hz 
+   * @n IIC flash 命令
    * @return None
    */
   void flashOnes();
   
   /**
    * @fn flashHalfs
-   * @brief Flash mode of the 8 bits digital tube, flash at 2Hz
-   * @param IIC flash command
+   * @brief 8位数码管的闪光模式，闪光2Hz  
+   * @n IIC flash 命令
    * @return None
    */
   void flashHalfs();
   
   /**
    * @fn stopFlash
-   * @brief The 8 bits digital tube stops flash 
-   * @param IIC command to stop flash
+   * @brief 8位数码管停止闪烁 
+   * @n IIC command to stop flash
    * @return None
    */
   void stopFlash();
 
   /**
-   * @fn setBrightness4
-   * @brief Set brightness of the 4 bits digital tube
-   * @param The brightness value can be set to numbers 1~8
+   * @fn setBrightness
+   * @brief 设置数码管亮度
+   * @param brightnessValue 亮度值可设置为数字1~8  
    * @return None
    */
-  void setBrightness4(int brightnessValue); 
+  void setBrightness(int brightnessValue); 
+  
+
+  /**
+   * @fn setDisplayArea
+   * @brief 数码管显示区域设置
+   * @param areaData 显示区域从第1位到第8位可以是1~8号  
+   * @return None
+   */
+  void setDisplayArea(int areaData1 = 82,int areaData2 = 82,int areaData3 = 82,int areaData4 = 82,int areaData5 = 82,int areaData6 = 82,int areaData7 = 82,int areaData8 = 82);
+
+
+  /**
+   * @fn print
+   * @brief 数码管数据打印
+   * @param sensorData 可以是整数和小数
+   * @return None
+   */
+  void print(double sensorData);
   
   /**
-   * @fn setBrightness8
-   * @brief Set brightness of the 8 bits digital tube
-   * @param The brightness value can be set to numbers 1~16
+   * @fn print
+   * @brief 数码管数据打印
+   * @param buf 第1位到第8位显示的数据可以是数字0到9，大写字母A、B、C、D、E、F、H、L、O、P、U和破折号，也可以是小数点，如“0”,“9”,“a”,“-”。
    * @return None
    */
-  void setBrightness8(int brightnessValue);
-
-  /**
-   * @fn setDisplayArea4
-   * @brief Display area of the 4 bits digital tube
-   * @param Display area from the first bit to the fourth bit could be number 1~4.
-   * @return None
-   */
-  void setDisplayArea4(int areaData1 = 82,int areaData2 = 82,int areaData3 = 82,int areaData4 = 82);
-
-  /**
-   * @fn setDisplayArea8
-   * @brief Display area of the 8 bits digital tube
-   * @param Display area from the first bit to the eighth bit could be number 1~8
-   * @return None
-   */
-  void setDisplayArea8(int areaData1 = 82,int areaData2 = 82,int areaData3 = 82,int areaData4 = 82,int areaData5 = 82,int areaData6 = 82,int areaData7 = 82,int areaData8 = 82);
-
-  /**
-   * @fn print4
-   * @brief Print data of the 4 bits digital tube
-   * @param It could be both integer and decimal
-   * @return None
-   */  
-  void print4(double sensorData);
-  
-  /**
-   * @fn print4
-   * @brief 4Print data of the 4 bits digital tube
-   * @param print4 Displayed data of bit 1 to bit 4 could be the numbers 0 to 9, capital letters A, B, C, D, E, F, H, L, O, P, U and dash-,
-   * @n and it also could be decimal points, such as "0." "9." "A." "-."
-   * @return None
-   */
-  void print4(const char buf1[] = "82",const char buf2[] = "82",const char buf3[] = "82",const char buf4[] = "82");
-
-  /**
-   * @fn print8
-   * @brief Print data of the 8 bits digital tube
-   * @param could be both integer and decimal
-   * @return None
-   */
-  void print8(double sensorData);
-  
-  /**
-   * @fn print8
-   * @brief Print data of the 8 bits digital tube
-   * @param print8 Displayed data of bit 1 to bit 8 could be the numbers 0 to 9, capital letters A, B, C, D, E, F, H, L, O, P, U and dash-,
-   * @n and it also could be decimal points, such as "0." "9." "A." "-."
-   * @return None
-   */
-    void print8(const char buf1[] = "82",const char buf2[] = "82",const char buf3[] = "82",const char buf4[] = "82",const char buf5[] = "82",const char buf6[] = "82",const char buf7[] = "82",const char buf8[] = "82");
+    void print(const char *buf1 = "82",const char *buf2 = "82",const char *buf3 = "82",const char *buf4 = "82",const char *buf5 = "82",const char *buf6 = "82",const char *buf7 = "82",const char *buf8 = "82");
 ```
 
 ## 兼容性
@@ -162,10 +126,10 @@
 MCU                | Work Well    | Work Wrong   | Untested    | Remarks
 ------------------ | :----------: | :----------: | :---------: | -----
 Arduino Uno        |      √       |              |             | 
-Mega2560        |      √       |              |             | 
-Leonardo        |      √       |              |             | 
-ESP32         |      √       |              |             | 
-micro:bit        |      √       |              |             | 
+Mega2560           |      √       |              |             | 
+Leonardo           |      √       |              |             | 
+ESP32              |      √       |              |             | 
+micro:bit          |      √       |              |             | 
 
 ## 版本
 
@@ -174,7 +138,7 @@ micro:bit        |      √       |              |             |
 
 ## 创作者
 
-Written by(wenzheng.wang@dfrobot.com), 2019. (Welcome to our [website](https://www.dfrobot.com/))
+Written by Actor (wenzheng.wang@dfrobot.com), 2019. (Welcome to our [website](https://www.dfrobot.com/))
 
 
 

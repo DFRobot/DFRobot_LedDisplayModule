@@ -1,5 +1,5 @@
 /*!
- * @file led4Power.ino
+ * @file ledPower.ino
  * @brief Switch experiment of the digital tube.
  * @n Experiment phenomenon: The digital tube displays "HALO" and turns off the screen in a second, then turns it ON in the next one second.
  * @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
@@ -16,26 +16,26 @@
  * Parameter &wire  Wire
  * Parameter: The IIC address in default is 0x48
  */
-DFRobot_LedDisplayModule LED(Wire, 0x48);
+DFRobot_LedDisplayModule LED(&Wire, 0x48);
 
 //Prepare: Connecting the digital tube to the IIC interface of the mainboard 
 void setup()
 {
   Serial.begin(115200);
   /*Wait for the chip to be initialized completely, and then exit*/
-  while(LED.begin4() != 0)
+  while(LED.begin(LED.e4Bit) != 0)
   {
     Serial.println("Failed to initialize the chip , please confirm the chip connection!");
     delay(1000);
   }
   /* Set the display area */
-  LED.setDisplayArea4(1,2,3,4);
+  LED.setDisplayArea(1,2,3,4);
   /** 
    * Display "HALO" 
    * At present, it only supports showing the numbers 0 to 9, capital letters A, B, C, D, E, F, H, L, O, P, U and dash-,
    * and you can also bring decimal points, such as "0." "9." "A." "-." 
    */
-  LED.print4("H","A","L","O");
+  LED.print("H","A","L","O");
   delay(1000);
 }
 

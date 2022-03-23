@@ -13,10 +13,21 @@
 
 #include "DFRobot_LedDisplayModule.h"
 
-DFRobot_LedDisplayModule::DFRobot_LedDisplayModule(TwoWire &wire, uint8_t ledAddress)
+DFRobot_LedDisplayModule::DFRobot_LedDisplayModule(TwoWire *wire, uint8_t ledAddress)
 {
-  _pWire = &wire;
+  _pWire = wire;
   _ledAddress = ledAddress >> 1; 
+}
+
+int DFRobot_LedDisplayModule::begin(eSetBit_t bit)
+{
+  _bit = bit;
+  uint8_t state;
+  if(_bit == eSetBit_t::e4Bit)
+    state = begin4();
+  else if(_bit = eSetBit_t::e8Bit)
+    state = begin8();
+  return state;
 }
 
 int DFRobot_LedDisplayModule::begin4()
@@ -76,6 +87,14 @@ void DFRobot_LedDisplayModule::stopFlash()
   i2cWriteCmd(CMD_HT16K33_STOPFLASH);
 }
 
+void DFRobot_LedDisplayModule::setBrightness(int brightnessValue)
+{
+  if(_bit == eSetBit_t::e4Bit)
+    setBrightness4(brightnessValue);
+  else if(_bit = eSetBit_t::e8Bit)
+    setBrightness8(brightnessValue);
+}
+
 void DFRobot_LedDisplayModule::setBrightness4(int brightnessValue)
 {
   if(brightnessValue == 8) brightnessValue = 0;
@@ -88,7 +107,15 @@ void DFRobot_LedDisplayModule::setBrightness8(int brightnessValue)
   i2cWriteCmd(0xE0|brightnessValue);
 }
 
-void DFRobot_LedDisplayModule::setDisplayArea4(int areaData1 = 82,int areaData2 = 82,int areaData3 = 82,int areaData4 = 82)
+void DFRobot_LedDisplayModule::setDisplayArea(int areaData1,int areaData2,int areaData3,int areaData4 ,int areaData5,int areaData6 ,int areaData7 ,int areaData8)
+{
+  if(_bit == eSetBit_t::e4Bit)
+    setDisplayArea4(areaData1,areaData2,areaData3,areaData4);
+  else if(_bit = eSetBit_t::e8Bit)
+    setDisplayArea8(areaData1,areaData2,areaData3,areaData4,areaData5,areaData6,areaData7,areaData8);
+}
+
+void DFRobot_LedDisplayModule::setDisplayArea4(int areaData1 ,int areaData2 ,int areaData3 ,int areaData4 )
 {
   if(areaData2==82 && areaData3==82 && areaData4==82)
   {
@@ -118,7 +145,7 @@ void DFRobot_LedDisplayModule::setDisplayArea4(int areaData1 = 82,int areaData2 
   } 
 }
 
-void DFRobot_LedDisplayModule::setDisplayArea8(int areaData1 = 82,int areaData2 = 82,int areaData3 = 82,int areaData4 = 82,int areaData5 = 82,int areaData6 = 82,int areaData7 = 82,int areaData8 = 82)
+void DFRobot_LedDisplayModule::setDisplayArea8(int areaData1,int areaData2,int areaData3,int areaData4 ,int areaData5,int areaData6 ,int areaData7 ,int areaData8)
 {
   if(areaData2==82 && areaData3==82 && areaData4==82 && areaData5==82 && areaData6==82 && areaData7==82 && areaData8==82)
   {
@@ -189,6 +216,13 @@ void DFRobot_LedDisplayModule::setDisplayArea8(int areaData1 = 82,int areaData2 
     d88 = areaData8;  
   } 
 }
+void DFRobot_LedDisplayModule::print(double sensorData)
+{
+  if(_bit == eSetBit_t::e4Bit)
+    print4(sensorData);
+  else if(_bit = eSetBit_t::e8Bit)
+    print8(sensorData);
+}
 
 void DFRobot_LedDisplayModule::print4(double sensorData)
 {
@@ -245,30 +279,30 @@ void DFRobot_LedDisplayModule::print4(double sensorData)
   }
 }   
   
-void DFRobot_LedDisplayModule::print4(const char buf1[] = "82",const char buf2[] = "82",const char buf3[] = "82",const char buf4[] = "82")
+void DFRobot_LedDisplayModule::print4(const char *buf1,const char *buf2,const char *buf3,const char *buf4)
 {
-  if (buf1[0] != "82"){
+  if (strcmp(buf1,"82") != 0){
   ledData1 = buf1[0];
   ledData11 = buf1[1];
   }else{
     ledData1 = 10;
     ledData11 = 10;
   }
-  if (buf2[0] != "82"){
+  if (strcmp(buf2,"82") != 0){
   ledData2 = buf2[0];
   ledData22 = buf2[1];
   }else{
     ledData2 = 10;
     ledData22 = 10;
   }
-  if (buf3[0] != "82"){
+  if (strcmp(buf3,"82") != 0){
   ledData3 = buf3[0];
   ledData33 = buf3[1];
   }else{
     ledData3 = 10;
     ledData33 = 10;
   }
-  if (buf4[0] != "82"){
+  if (strcmp(buf4,"82") != 0){
   ledData4 = buf4[0];
   ledData44 = buf4[1]; 
   }else{
@@ -486,30 +520,39 @@ void DFRobot_LedDisplayModule::print8(double sensorData)
   }
 }
 
-void DFRobot_LedDisplayModule::print8(const char buf1[] = "82",const char buf2[] = "82",const char buf3[] = "82",const char buf4[] = "82",const char buf5[] = "82",const char buf6[] = "82",const char buf7[] = "82",const char buf8[] = "82")
+void DFRobot_LedDisplayModule::print(const char *buf1,const char *buf2,const char *buf3,const char *buf4,const char *buf5,const char *buf6,const char *buf7,const char *buf8)
 {
-  if (buf1[0] != "82"){
+  if(_bit == eSetBit_t::e4Bit)
+    print4(buf1,buf2,buf3,buf4);
+  else if(_bit = eSetBit_t::e8Bit)
+    print8(buf1,buf2,buf3,buf4,buf5,buf6,buf7,buf8);
+
+}
+void DFRobot_LedDisplayModule::print8(const char *buf1,const char *buf2,const char *buf3,const char *buf4,const char *buf5,const char *buf6,const char *buf7,const char *buf8)
+{
+  String data = "82";
+  if (strcmp(buf1,"82") != 0){
   ledData1 = buf1[0];
   ledData11 = buf1[1];
   }else{
     ledData1 = 10;
     ledData11 = 10;
   }
-  if (buf2[0] != "82"){
+  if (strcmp(buf2,"82") != 0){
   ledData2 = buf2[0];
   ledData22 = buf2[1];
   }else{
     ledData2 = 10;
     ledData22 = 10;
   }
-  if (buf3[0] != "82"){
+  if (strcmp(buf3,"82") != 0){
   ledData3 = buf3[0];
   ledData33 = buf3[1];
   }else{
     ledData3 = 10;
     ledData33 = 10;
   }
-  if (buf4[0] != "82"){
+  if (strcmp(buf4,"82") != 0){
   ledData4 = buf4[0];
   ledData44 = buf4[1]; 
   }else{
@@ -517,28 +560,28 @@ void DFRobot_LedDisplayModule::print8(const char buf1[] = "82",const char buf2[]
     ledData44 = 10;
   }  
  
-  if (buf5[0] != "82"){
+  if (strcmp(buf5,"82") != 0){
   ledData5 = buf5[0];
   ledData55 = buf5[1];
   }else{
     ledData5 = 10;
     ledData55 = 10;
   }
-  if (buf6[0] != "82"){
+  if (strcmp(buf6,"82") != 0){
   ledData6 = buf6[0];
   ledData66 = buf6[1];
   }else{
     ledData6 = 10;
     ledData66 = 10;
   }
-  if (buf7[0] != "82"){
+  if (strcmp(buf7,"82") != 0){
   ledData7 = buf7[0];
   ledData77 = buf7[1];
   }else{
     ledData7 = 10;
     ledData77 = 10;
   }
-  if (buf8[0] != "82"){
+  if (strcmp(buf8,"82") != 0){
   ledData8 = buf8[0];
   ledData88 = buf8[1]; 
   }else{

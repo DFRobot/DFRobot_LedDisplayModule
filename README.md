@@ -1,5 +1,7 @@
 # DFRobot_LedDisplayModule
-  * [中文版](./README_CN.md)
+
+* [中文版](./README_CN.md)
+  
 This is a 4bits / 8bits digital tube. It communicates with the host via IIC to show numbers from 0 to 9, capital letters A, B, C, D, E, F, H, L, O, P, U and dash-. <br>
 The IIC address of 4 bits digital tube in default is 0x48. <br>
 The IIC address of 8 bits digital tube in default is 0xE0. This address can be changed to 0xE2, 0xE4, 0xE6 with different combinations of 2 welding points that in the back of the display. <br>
@@ -28,23 +30,17 @@ To use this library, please download the library file first and paste it into th
 
 ```C++
   /**
-   * @fn begin4
-   * @brief  the 4 bits digital tube
+   * @fn begin
+   * @brief  init digital tube
+   * @param bit set display digit
    * @return Return 0 if the initialization is successful, otherwise return non-zero
    */
-  int begin4();
+  int begin(eSetBit_t bit);
   
-  /**
-   * @fn begin8
-   * @brief Initialize the 8 bits digital tube
-   * @return Return 0 if the initialization is successful, otherwise return non-zero
-   */ 
-  int begin8();
-
   /**
    * @fn displayOn
    * @brief Turn ON the display
-   * @param IIC command to turn ON the display
+   * @n IIC command to turn ON the display
    * @return None
    */
   void displayOn();
@@ -52,7 +48,7 @@ To use this library, please download the library file first and paste it into th
   /**
    * @fn displayOff
    * @brief Turn OFF the display 
-   * @param IIC command to turn OFF the display
+   * @n IIC command to turn OFF the display
    * @return None
    */  
   void displayOff();
@@ -60,7 +56,7 @@ To use this library, please download the library file first and paste it into th
   /**
    * @fn flashTwos
    * @brief Flash mode of the 8 bits digital tube, flash at 0.5Hz
-   * @param IIC flash command
+   * @n IIC flash command
    * @return None
    */
   void flashTwos();
@@ -68,7 +64,7 @@ To use this library, please download the library file first and paste it into th
   /**
    * @fn flashOnes
    * @brief Flash mode of the 8 bits digital tube, flash at 1Hz
-   * @param IIC flash command
+   * @n IIC flash command
    * @return None
    */
   void flashOnes();
@@ -76,7 +72,7 @@ To use this library, please download the library file first and paste it into th
   /**
    * @fn flashHalfs
    * @brief Flash mode of the 8 bits digital tube, flash at 2Hz
-   * @param IIC flash command
+   * @n IIC flash command
    * @return None
    */
   void flashHalfs();
@@ -84,76 +80,45 @@ To use this library, please download the library file first and paste it into th
   /**
    * @fn stopFlash
    * @brief The 8 bits digital tube stops flash 
-   * @param IIC command to stop flash
+   * @n IIC command to stop flash
    * @return None
    */
   void stopFlash();
 
   /**
-   * @fn setBrightness4
-   * @brief Set brightness of the 4 bits digital tube
-   * @param The brightness value can be set to numbers 1~8
+   * @fn setBrightness
+   * @brief Set brightness ofdigital tube
+   * @param brightnessValue The brightness value can be set to numbers 1~8
    * @return None
    */
-  void setBrightness4(int brightnessValue); 
+  void setBrightness(int brightnessValue); 
+
   
   /**
-   * @fn setBrightness8
-   * @brief Set brightness of the 8 bits digital tube
-   * @param The brightness value can be set to numbers 1~16
+   * @fn setDisplayArea
+   * @brief Display area of the digital tube
+   * @param areaData Display area from the first bit to the fourth bit could be number 1~4.
    * @return None
    */
-  void setBrightness8(int brightnessValue);
-
+  void setDisplayArea(int areaData1 = 82,int areaData2 = 82,int areaData3 = 82,int areaData4 = 82,int areaData5 = 82,int areaData6 = 82,int areaData7 = 82,int areaData8 = 82);
+  
   /**
-   * @fn setDisplayArea4
-   * @brief Display area of the 4 bits digital tube
-   * @param Display area from the first bit to the fourth bit could be number 1~4.
-   * @return None
-   */
-  void setDisplayArea4(int areaData1 = 82,int areaData2 = 82,int areaData3 = 82,int areaData4 = 82);
-
-  /**
-   * @fn setDisplayArea8
-   * @brief Display area of the 8 bits digital tube
-   * @param Display area from the first bit to the eighth bit could be number 1~8
-   * @return None
-   */
-  void setDisplayArea8(int areaData1 = 82,int areaData2 = 82,int areaData3 = 82,int areaData4 = 82,int areaData5 = 82,int areaData6 = 82,int areaData7 = 82,int areaData8 = 82);
-
-  /**
-   * @fn print4
-   * @brief Print data of the 4 bits digital tube
-   * @param It could be both integer and decimal
+   * @fn print
+   * @brief Print data of  digital tube
+   * @param sensorData It could be both integer and decimal
    * @return None
    */  
-  void print4(double sensorData);
+  void print(double sensorData);
   
   /**
-   * @fn print4
-   * @brief 4Print data of the 4 bits digital tube
-   * @param print4 Displayed data of bit 1 to bit 4 could be the numbers 0 to 9, capital letters A, B, C, D, E, F, H, L, O, P, U and dash-,
+   * @fn print
+   * @brief Print data of  digital tube
+   * @param buf  Displayed data of bit 1 to bit 8 could be the numbers 0 to 9, capital letters A, B, C, D, E, F, H, L, O, P, U and dash-,
    * @n and it also could be decimal points, such as "0." "9." "A." "-."
    * @return None
    */
-  void print4(const char buf1[] = "82",const char buf2[] = "82",const char buf3[] = "82",const char buf4[] = "82");
-
-  /**
-   * @fn print8
-   * @brief Print data of the 8 bits digital tube
-   * @param could be both integer and decimal
-   * @return None
-   */
-  void print8(double sensorData);
+  void print(const char *buf1 = "82",const char *buf2 = "82",const char *buf3 = "82",const char *buf4 = "82",const char *buf5 = "82",const char *buf6 = "82",const char *buf7 = "82",const char *buf8 = "82");
   
-  /**
-   * @fn print8
-   * @brief Print data of the 8 bits digital tube
-   * @param print8 Displayed data of bit 1 to bit 8 could be the numbers 0 to 9, capital letters A, B, C, D, E, F, H, L, O, P, U and dash-,
-   * @n and it also could be decimal points, such as "0." "9." "A." "-."
-   * @return None
-   */
-    void print8(const char buf1[] = "82",const char buf2[] = "82",const char buf3[] = "82",const char buf4[] = "82",const char buf5[] = "82",const char buf6[] = "82",const char buf7[] = "82",const char buf8[] = "82");
 ```
 
 ## Compatibility
@@ -173,7 +138,7 @@ micro:bit          |      √       |              |             |
 
 ## Credits
 
-Written by(wenzheng.wang@dfrobot.com), 2019. (Welcome to our [website](https://www.dfrobot.com/))
+Written by Actor (wenzheng.wang@dfrobot.com), 2019. (Welcome to our [website](https://www.dfrobot.com/))
 
 
 
