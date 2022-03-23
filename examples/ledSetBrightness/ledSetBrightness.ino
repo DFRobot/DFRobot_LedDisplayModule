@@ -1,5 +1,5 @@
 /*!
- * @file led4SetBrightness.ino
+ * @file ledSetBrightness.ino
  * @brief Brightness setting experiment of the digital tube.
  * @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
  * @license     The MIT License (MIT)

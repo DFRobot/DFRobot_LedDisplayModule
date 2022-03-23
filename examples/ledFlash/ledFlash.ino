@@ -1,5 +1,5 @@
 /*!
- * @file led8Flash.ino
+ * @file ledFlash.ino
  * @brief The digital tube flash experiment
  * @n Experiment phenomenon: The digital tube shows "FLASH", and flashes to show 0.5HZ in 2 seconds,
  * @n then flashes to show 1HZ in 3 seconds and flashes to show 2HZ in the other 3 seconds. Finally, shows HOLD in another 3s.
@@ -28,7 +28,7 @@ void setup()
 {
   Serial.begin(115200);
   /*Wait for the chip to be initialized completely, and then exit*/
-  while(LED.begin8() != 0)
+  while(LED.begin(LED.e8Bit) != 0)
   {
     Serial.println("Initialization of the chip failed, please confirm that the chip connection is correct!");
     delay(1000);
@@ -38,37 +38,37 @@ void setup()
    * It can show 8 bits, the region of each parameter is 1~8
    * Please resend the display value if the display area is changed
    */
-  LED.setDisplayArea8(3,4,5,6,7);
+  LED.setDisplayArea(3,4,5,6,7);
   /**
    * Display "HALO"
    * At present, it only supports showing the numbers 0 to 9, capital letters A, B, C, D, E, F, H, L, O, P, U and dash-,
    * and you can also bring decimal points, such as "0." "9." "A." "-."
    */
-  LED.print8("F","L","A","5","H");
+  LED.print("F","L","A","5","H");
   delay(2000);
 }
 
 void loop() 
 {    
-  LED.setDisplayArea8(3,4,5,6,7);
-  LED.print8("0.","5","-","H","2");
+  LED.setDisplayArea(3,4,5,6,7);
+  LED.print("0.","5","-","H","2");
   /* Start flash at 0.5Hz.*/
   LED.flashTwos();
   delay(3000);
 
-  LED.setDisplayArea8(3,4,5,6);
-  LED.print8("1","-","H","2");
+  LED.setDisplayArea(3,4,5,6);
+  LED.print("1","-","H","2");
   /* Start flash at 1Hz.*/
   LED.flashOnes();
   delay(3000);
   
-  LED.setDisplayArea8(3,4,5,6);
-  LED.print8("2","-","H","2"); 
+  LED.setDisplayArea(3,4,5,6);
+  LED.print("2","-","H","2"); 
   /* Start flash at 2Hz.*/ 
   LED.flashHalfs();
   delay(3000);
 
-  LED.setDisplayArea8(3,4,5,6);
+  LED.setDisplayArea(3,4,5,6);
   LED.print8("H","O","L","D");
   /* Stop flash*/
   LED.stopFlash();

@@ -1,5 +1,5 @@
 /*!
- * @file led4SetDisplayArea.ino
+ * @file ledSetDisplayArea.ino
  * @brief The experiment to set the display area of the digital tube
  * @n Experiment phenomenon: The 13 zone of the digital tube shows "HL", and the 24 zone show "AO" in one second, then 1234 zone show "HALO" in one second.
  * @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)

@@ -1,5 +1,5 @@
 /*!
- * @file led4Print.ino
+ * @file ledPrint.ino
  * @brief Display experiment of the digital tube
  * @n Experiment phenomenon: The digital tube displays "HALO"，and in one second, displays "H.A.L.O.", then show value of the variable val after one second
  * @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
