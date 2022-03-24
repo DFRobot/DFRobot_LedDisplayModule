@@ -14,7 +14,7 @@
  * Parameter &wire  Wire
  * Parameter: The IIC address in default is 0x48
  */
-DFRobot_LedDisplayModule LED(Wire, 0x48);
+DFRobot_LedDisplayModule LED(&Wire, 0x48);
 
 void setup() 
 {

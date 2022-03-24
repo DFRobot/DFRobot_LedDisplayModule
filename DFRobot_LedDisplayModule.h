@@ -54,7 +54,7 @@ public:
    */
   typedef enum{
     e4Bit = 0,
-    e8Bit
+    e8Bit = 1
   }eSetBit_t;
     
 public:
@@ -70,7 +70,7 @@ public:
    * @n 1  1  1  0  | 0  1  0  0    0xE4
    * @n 0  0  1  0  | 0  1  1  0    0xE6
    */ 
-  DFRobot_LedDisplayModule(TwoWire *wire = &Wire, uint8_t ledAddress = 0x48);
+  DFRobot_LedDisplayModule(TwoWire *wire = &Wire, uint8_t ledAddress = 0x70);
 
   /**
    * @fn begin
@@ -182,7 +182,7 @@ private:
 
   int d1,d2,d3,d4,d5,d6,d7;
   int a1,a2,a3,a4,a5,a6,a7;  ///< Display address data buffer
-  uint8_t _bit;
+  eSetBit_t _bit;
   ///< Display data 
   const unsigned char TAB2[38]={0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x00,0x00,0x00,0x00,0x00,0x00,0x00,  ///< 0~9 
                                 0x77,0x7C,0x39,0x5E,0x79,0x71,  ///< A~F 

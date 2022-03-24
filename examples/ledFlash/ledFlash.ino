@@ -22,7 +22,7 @@
  * 1  1  1  0  | 0  1  0  0    0xE4
  * 0  0  1  0  | 0  1  1  0    0xE6
  */ 
-DFRobot_LedDisplayModule LED(Wire, 0xE0);
+DFRobot_LedDisplayModule LED(&Wire, 0xE0);
 
 void setup() 
 {
@@ -69,7 +69,7 @@ void loop()
   delay(3000);
 
   LED.setDisplayArea(3,4,5,6);
-  LED.print8("H","O","L","D");
+  LED.print("H","O","L","D");
   /* Stop flash*/
   LED.stopFlash();
   delay(3000);

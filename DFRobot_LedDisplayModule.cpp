@@ -25,7 +25,7 @@ int DFRobot_LedDisplayModule::begin(eSetBit_t bit)
   uint8_t state;
   if(_bit == eSetBit_t::e4Bit)
     state = begin4();
-  else if(_bit = eSetBit_t::e8Bit)
+  else if(_bit == eSetBit_t::e8Bit)
     state = begin8();
   return state;
 }
@@ -91,7 +91,7 @@ void DFRobot_LedDisplayModule::setBrightness(int brightnessValue)
 {
   if(_bit == eSetBit_t::e4Bit)
     setBrightness4(brightnessValue);
-  else if(_bit = eSetBit_t::e8Bit)
+  else if(_bit == eSetBit_t::e8Bit)
     setBrightness8(brightnessValue);
 }
 
@@ -111,7 +111,7 @@ void DFRobot_LedDisplayModule::setDisplayArea(int areaData1,int areaData2,int ar
 {
   if(_bit == eSetBit_t::e4Bit)
     setDisplayArea4(areaData1,areaData2,areaData3,areaData4);
-  else if(_bit = eSetBit_t::e8Bit)
+  else if(_bit == eSetBit_t::e8Bit)
     setDisplayArea8(areaData1,areaData2,areaData3,areaData4,areaData5,areaData6,areaData7,areaData8);
 }
 
@@ -220,7 +220,7 @@ void DFRobot_LedDisplayModule::print(double sensorData)
 {
   if(_bit == eSetBit_t::e4Bit)
     print4(sensorData);
-  else if(_bit = eSetBit_t::e8Bit)
+  else if(_bit == eSetBit_t::e8Bit)
     print8(sensorData);
 }
 
@@ -524,7 +524,7 @@ void DFRobot_LedDisplayModule::print(const char *buf1,const char *buf2,const cha
 {
   if(_bit == eSetBit_t::e4Bit)
     print4(buf1,buf2,buf3,buf4);
-  else if(_bit = eSetBit_t::e8Bit)
+  else if(_bit == eSetBit_t::e8Bit)
     print8(buf1,buf2,buf3,buf4,buf5,buf6,buf7,buf8);
 
 }
