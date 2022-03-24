@@ -1,6 +1,6 @@
 # DFRobot_LedDisplayModule
 
-* [中文版](./README_CN.md)
+* [English Version](./README_CN.md)
   
 这是一个4位/ 8位数码管。 它通过IIC与主机通信，显示0 ~ 9的数字，大写字母A、B、C、D、E、F、H、L、O、P、U和破折号。   <br>
 4位数码管的IIC地址默认为0x48。 <br>
