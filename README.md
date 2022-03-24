@@ -10,7 +10,8 @@ The IIC address of 8 bits digital tube in default is 0xE0. This address can be c
 
 ## Product Link (https://www.dfrobot.com/product-1978.html)
     SKU: DFR0646
-
+    
+## Table of Contents
   - [Summary](#summary)
   - [Installation](#installation)
   - [Methods](#methods)
