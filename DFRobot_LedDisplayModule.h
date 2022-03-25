@@ -70,7 +70,7 @@ public:
    * @n 1  1  1  0  | 0  1  0  0    0xE4
    * @n 0  0  1  0  | 0  1  1  0    0xE6
    */ 
-  DFRobot_LedDisplayModule(TwoWire *wire = &Wire, uint8_t ledAddress = 0x70);
+  DFRobot_LedDisplayModule(TwoWire *wire = &Wire, uint8_t ledAddress = 0xE0);
 
   /**
    * @fn begin

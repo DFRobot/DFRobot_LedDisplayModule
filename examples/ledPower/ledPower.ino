@@ -14,9 +14,15 @@
 /**
  * DFRobot_LedDisplayModule Constructor
  * Parameter &wire  Wire
- * Parameter: The IIC address in default is 0x48
- */
-DFRobot_LedDisplayModule LED(&Wire, 0x48);
+ * In default, the IIC address of 8 bits digital tube is 0xE0
+ * The IIC address of 8 bits digital tube can be changed by combining A1 and A0
+ * 1  1  1  0  | 0  A1 A0 0
+ * 1  1  1  0  | 0  0  0  0    0xE0
+ * 1  1  1  0  | 0  0  1  0    0xE2
+ * 1  1  1  0  | 0  1  0  0    0xE4
+ * 0  0  1  0  | 0  1  1  0    0xE6
+ */ 
+DFRobot_LedDisplayModule LED(&Wire, 0xE0);
 
 //Prepare: Connecting the digital tube to the IIC interface of the mainboard 
 void setup()
