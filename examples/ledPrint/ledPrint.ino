@@ -21,7 +21,7 @@ void setup()
 {
   Serial.begin(115200);
   /*Wait for the chip to be initialized completely, and then exit*/
-  while(LED.begin4(LED.e4Bit) != 0)
+  while(LED.begin(LED.e4Bit) != 0)
   {
     Serial.println("Failed to initialize the chip , please confirm the chip connection!");
     delay(1000);
