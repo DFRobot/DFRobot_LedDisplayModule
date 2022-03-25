@@ -1,5 +1,5 @@
 /*!
- * @file DFRobot_LedDisplayModule.h
+ * @file DFRobot_LedDisplayModule.cpp
  * @brief Define the basic structure of class DFRobot_LedDisplayModule
  * @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
  * @license     The MIT License (MIT)
