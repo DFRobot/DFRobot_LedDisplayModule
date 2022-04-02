@@ -9,7 +9,7 @@
 ![Product Image](./resources/images/DFR0646.png)
 ![Product Image](./resources/images/DFR0645.png)
 
-## 产品链接 (https://www.dfrobot.com.cn/goods-2601.html)
+## 产品链接 (https://www.dfrobot.com.cn)
 
     SKU: DFR0646/DFR0645
 
