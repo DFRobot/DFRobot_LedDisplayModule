@@ -7,9 +7,10 @@ The IIC address of 4 bits digital tube in default is 0x48. <br>
 The IIC address of 8 bits digital tube in default is 0xE0. This address can be changed to 0xE2, 0xE4, 0xE6 with different combinations of 2 welding points that in the back of the display. <br>
 
 ![Product Image](./resources/images/DFR0646.png)
+![Product Image](./resources/images/DFR0645.png)
 
-## Product Link (https://www.dfrobot.com/product-1978.html)
-    SKU: DFR0646
+## Product Link (https://www.dfrobot.com)
+    SKU: DFR0646\DFR0645
     
 ## Table of Contents
   - [Summary](#summary)

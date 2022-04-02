@@ -7,10 +7,11 @@
 8位数码管的IIC地址默认为0xE0。 该地址可以用显示器背面的2个焊点的不同组合来更改为0xE2、0xE4、0xE6。 <br>
 
 ![Product Image](./resources/images/DFR0646.png)
+![Product Image](./resources/images/DFR0645.png)
 
 ## 产品链接 (https://www.dfrobot.com.cn/goods-2601.html)
 
-    SKU: DFR0646
+    SKU: DFR0646/DFR0645
 
 ## 目录
   - [概述](#概述)
