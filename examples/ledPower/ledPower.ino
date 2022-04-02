@@ -24,12 +24,18 @@
  */ 
 DFRobot_LedDisplayModule LED(&Wire, 0xE0);
 
+/**
+ * DFRobot_LedDisplayModule Constructor
+ * In default, the IIC address of 4 bits digital tube is 0x48 
+ */
+//DFRobot_LedDisplayModule LED(&Wire, 0x48);
+
 //Prepare: Connecting the digital tube to the IIC interface of the mainboard 
 void setup()
 {
   Serial.begin(115200);
   /*Wait for the chip to be initialized completely, and then exit*/
-  while(LED.begin(LED.e4Bit) != 0)
+  while(LED.begin(LED.e8Bit) != 0)
   {
     Serial.println("Failed to initialize the chip , please confirm the chip connection!");
     delay(1000);
