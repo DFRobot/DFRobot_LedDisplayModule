@@ -28,7 +28,7 @@ DFRobot_LedDisplayModule LED(&Wire, 0xE0);
 void setup() 
 {
   Serial.begin(115200);
-  /*Wait for the chip to be initialized completely, and then exit*/
+  /*Wait for the chip to be initialized completely, and then exit,Can only be used with 8 bits*/
   while(LED.begin(LED.e8Bit) != 0)
   {
     Serial.println("Initialization of the chip failed, please confirm that the chip connection is correct!");
